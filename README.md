@@ -1,6 +1,9 @@
 # 104th-Appscript
 Appscript code for the 104th roster
 
+### Roster Link
+https://docs.google.com/spreadsheets/d/1rlFCQVaWGdGbDxN61qFMThL1jIrSJVkXw6De18W5Qvo/edit#gid=1482249414
+
 ### Implemented Features
 - Useage of HTML UI Forms for improved QOL
 - Automatic / button reformatting
