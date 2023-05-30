@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>   
+
+      <div class="col">          
+          <div class="input-field col">
+            <button type="submit" class="btn waves-effect waves-light green" id="reformatAll" style="width: 100%">Reformat All
+              <i class="material-icons right"></i>
+            </button>
+          </div>  
+
+          <div class="input-field col">
+            <button type="submit" class="btn waves-effect waves-light teal lighten-2" id="reformatMainRoster" style="width: 100%">Reformat Main Roster
+              <i class="material-icons right"></i>
+            </button>
+          </div>  
+
+          <div class="input-field col">
+            <button type="submit" class="btn waves-effect waves-light teal lighten-2 disabled" id="reformatWolfpack" style="width: 100%">Reformat Wolfpack Roster
+              <i class="material-icons right"></i>
+            </button>
+          </div>  
+
+          <div class="input-field col">
+            <button type="submit" class="btn waves-effect waves-light teal lighten-2 disabled" id="reformatHowlers" style="width: 100%">Reformat Howlers Roster
+              <i class="material-icons right"></i>
+            </button>
+          </div>  
+
+          <div class="input-field col">
+            <button type="submit" class="btn waves-effect waves-light teal lighten-2 disabled" id="reformatJedi" style="width: 100%">Reformat 104th Jedi Roster
+              <i class="material-icons right"></i>
+            </button>
+          </div>  
+      </div>
+      
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+       <script>
+
+        document.getElementById("reformatAll").addEventListener("click",reformatAll);
+        document.getElementById("reformatMainRoster").addEventListener("click",reformatMainRoster);
+        
+        function reformatAll() {
+          google.script.run.reformatAll();
+        } 
+
+      </script>
+    </body>
+  </html>
