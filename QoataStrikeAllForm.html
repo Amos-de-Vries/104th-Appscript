@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+   
+      <div class="row">
+          <div class="input-field col s12">
+            <input placeholder="Your SteamID" id="coSteamID" type="text" class="validate">
+            <label for="coSteamID">Your SteamID</label>
+          </div>       
+        
+          <div class="input-field col s12">
+            <input placeholder="CONFIRM" id="confirm" type="text" class="validate">
+            <label for="confirm">Type 'CONFIRM'</label>
+          </div>        
+      
+          </div>  
+
+          <div class="input-field col s6">
+            <button type="submit" class="btn waves-effect waves-light red" id="strikeSubmit">Strike All
+              <i class="material-icons right">send</i>
+            </button>
+          </div>  
+      </div>
+      
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+       <script>  
+
+        document.getElementById("strikeSubmit").addEventListener("click",recordStrike);
+
+        var coSteamIDbox = document.getElementById('coSteamID');   
+        var confirmBox = document.getElementById('confirm');
+        
+
+        function recordStrike(){
+          var coSteamID = coSteamIDbox.value;
+          var confirm = confirmBox.value;
+
+          if (coSteamID.length == 17 && confirm == "CONFIRM") {            
+            var strikeData = {
+              coSteamID: coSteamIDbox.value
+            };
+
+            google.script.run.showAlert("All 104th wihout reached qoata will be striked")
+            google.script.run.strikeMemberQoataAll(strikeData);
+          } 
+        }
+
+      </script>
+
+    </body>
+  </html>
