@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+   <script>
+      <?= 
+        activeRangeHTML;
+        var selectedName= activeRangeHTML[0][0];            
+        var selectedSteamID = activeRangeHTML[0][1];              
+      ?>
+    </script>
+ 
+      <div class="row">
+          <div class="input-field col s6">
+            <input placeholder="Their Name" id="name" type="text" class="validate">
+            <label for="name">Their Name</label>
+          </div>       
+        
+          <div class="input-field col s6">
+            <input placeholder="SteamID64" id="steamID" type="number" class="validate">
+            <label for="steamID">Their SteamID</label>
+          </div>        
+      
+          <div class="input-field col s12">
+            <input placeholder="Your Own SteamID (CO+)" id="coSteamID" type="number" class="validate">
+            <label for="coSteamID">Officers SteamID</label>
+          </div>  
+    
+          <div class="input-field col s6">
+            <button class="btn waves-effect waves-light green" id="strikeGetSelected">Copy Selected
+              <i class="material-icons right">send</i>
+            </button>
+          </div>  
+
+          <div class="input-field col s6">
+            <button type="submit" class="btn waves-effect waves-light red" id="strikeSubmit">Strike Member
+              <i class="material-icons right">send</i>
+            </button>
+          </div>  
+      </div>
+      
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+       <script>
+
+    
+        var namebox = document.getElementById('name');
+        var steamIDbox = document.getElementById('steamID');
+        var coSteamIDbox = document.getElementById('coSteamID');    
+
+        namebox.value = <?= selectedName?>;
+        steamIDbox.value = <?= selectedSteamID?>;
+
+        document.getElementById("strikeSubmit").addEventListener("click",recordStrike);
+        document.getElementById("strikeGetSelected").addEventListener("click",inputSelected);
+
+        function inputSelectedSuccess(selectedData) {
+          if (selectedData[0][0].length > 0 && selectedData[0][1].length > 0 ) {
+            document.getElementById('name').value = selectedData[0][0];
+            document.getElementById('steamID').value = selectedData[0][1];
+            }
+        }
+
+        function inputSelected(){ 
+          google.script.run.withSuccessHandler(inputSelectedSuccess)
+          .getCurrentSelectedValues();        
+        }
+
+        function recordStrike(){
+          var name = namebox.value;
+          var steamID = steamIDbox.value;
+          var coSteamID = coSteamIDbox.value;
+
+          if (name.length > 0 && steamID.length == 17 && coSteamID.length == 17) {            
+            var strikeData = {
+              name: namebox.value,
+              steamID: steamIDbox.value,
+              coSteamID: coSteamIDbox.value        
+            };
+
+            namebox.value = "";
+            steamIDbox.value = "";
+
+            google.script.run.strikeMemberQoata(strikeData);
+          } 
+        }
+
+      </script>
+
+    </body>
+  </html>
